@@ -27,7 +27,7 @@ class WatchProductScreen extends StatelessWidget {
             title: const CustomText(
               text: StringsManager.watch,
               color: AppColors.whiteColor,
-              fontSize: SizeConfig.s25,
+              fontSize: SizeConfig.s30,
             ),
           ),
           body: (state is FailedProductState)

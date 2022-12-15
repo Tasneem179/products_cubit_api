@@ -50,7 +50,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
     return Scaffold(

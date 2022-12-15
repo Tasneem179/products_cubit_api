@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:products_cubit_api/core/data/local/cache_helper.dart';
-import 'package:products_cubit_api/core/data/remote/dio_helper.dart';
+
 import 'package:products_cubit_api/core/mangers/color_manager.dart';
 import 'package:products_cubit_api/core/mangers/size_configuration.dart';
 import 'package:products_cubit_api/presntation/custom_widgets/custom_text.dart';
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
-
+    SizeConfig().init(context);
     return Container(
 
       color: AppColors.blackColor,
@@ -61,13 +61,13 @@ class _SplashScreenState extends State<SplashScreen> {
              progressColor: AppColors.roseColorFate7,
               onAnimationEnd:()
               {
-                // setState(() {
-                //  show =CacheHelper.getData("show")??null;
-                // });
-                // if (show == true|| show==null )
+                setState(() {
+                 show =CacheHelper.getData("show")??null;
+                });
+                if (show == true|| show==null )
                   Get.offAll(OnboardingScreen());
-                 // else
-                 //  Get.offAll(CategoriesScreen());
+                 else
+                  Get.offAll(CategoriesScreen());
               }
             ),
 
