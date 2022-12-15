@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:products_cubit_api/core/mangers/size_configuration.dart';
 import 'package:products_cubit_api/core/mangers/strings_manager.dart';
+import 'package:products_cubit_api/presntation/screens/phone_cubit/phone_cubit.dart';
+import 'package:products_cubit_api/presntation/screens/phone_cubit/phone_state.dart';
 
+import '../../core/mangers/color_manager.dart';
+import '../custom_widgets/custom_gridview.dart';
 import '../custom_widgets/custom_scaffold.dart';
+import '../custom_widgets/custom_text.dart';
 import 'cubit/watch_cubit.dart';
 import 'cubit/watch_state.dart';
 class PhoneProductScreen extends StatelessWidget {
@@ -11,6 +18,38 @@ class PhoneProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //dummy data
-  return  CustomScaffold(price: "price:5000", title: "smart phone", image: "assets/smart.jpg", appBar_title: "Smart Phone");
+ return BlocBuilder<PhoneCubit, PhoneProductState>(
+   builder: (context, state) {
+     return  Scaffold(
+       backgroundColor: AppColors.color1,
+       appBar: AppBar(
+         centerTitle: true,
+         backgroundColor: AppColors.roseColor,
+         title: const CustomText(
+           text: StringsManager.smart_phone,
+           color: AppColors.whiteColor,
+           fontSize: SizeConfig.s30,
+         ),
+       ),
+       body: (state is FailedPhoneState)
+           ? Center(
+         child: CustomText(
+           text: state.errorModel.message,
+           color: AppColors.whiteColor,
+           fontSize: SizeConfig.s25,
+         ),
+       )
+           :(state is SuccessPhoneState)?CustomGridView(product: context.watch<PhoneCubit>().phones)
+           :const Center(
+         child: SpinKitFadingCube(
+           color: AppColors.roseColor,
+           size: SizeConfig.s50,
+         ),
+       ),
+     );
+   },
+ );
+
   }
 }
+// CustomScaffold(price: "price:5000", title: "smart phone", image: "assets/smart.jpg", appBar_title: "Smart Phone");

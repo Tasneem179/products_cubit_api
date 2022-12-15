@@ -12,20 +12,19 @@ class OnboardingModel {
 
 List<OnboardingModel> contents = [
   OnboardingModel(
-    title: "Track Your work and get the result",
+    title: "Track Your Transaction and get the product",
     image: "assets/shop2.png",
     desc: "Remember to keep track of your professional accomplishments.",
   ),
   OnboardingModel(
-    title: "Stay organized with team",
+    title: "Select Any Product You Want",
     image: "assets/shop4.png",
-    desc:
-    "But understanding the contributions our colleagues make to our teams and companies.",
+    desc: "Oreder will deliver as soon as possible.",
   ),
   OnboardingModel(
-    title: "Get notified when work happens",
+    title: "Get started and Buy Now ",
     image: "assets/shop.png",
     desc:
-    "Take control of notifications, collaborate live or on your own time.",
+    "Yalla Buy Now any product you want  ",
   ),
 ];

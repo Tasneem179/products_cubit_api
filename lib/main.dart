@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:products_cubit_api/core/data/local/cache_helper.dart';
 import 'package:products_cubit_api/core/data/remote/network/network_service.dart';
+import 'package:products_cubit_api/presntation/screens/bag_cubit/Bag_cubit.dart';
 import 'package:products_cubit_api/presntation/screens/cubit/watch_cubit.dart';
+import 'package:products_cubit_api/presntation/screens/laptop_cubit/Laptop_cubit.dart';
+import 'package:products_cubit_api/presntation/screens/phone_cubit/phone_cubit.dart';
 import 'package:products_cubit_api/presntation/screens/splash_screen.dart';
 
-import 'core/data/remote/dio_helper.dart';
+
 
 void main() {
  NetworkService.initDio();
@@ -19,8 +23,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WatchCubit()..getWatch(),
+    return MultiBlocProvider(providers:
+    [
+      BlocProvider(create: (context) => WatchCubit()..getWatch(),),
+      BlocProvider(create: (context) => PhoneCubit()..getPhone(),),
+      BlocProvider(create: (context) => BagCubit()..getBag(),),
+      BlocProvider(create: (context) => LaptopCubit()..getLatop(),),
+    ],
+
       child: GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
